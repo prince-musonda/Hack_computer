@@ -1,0 +1,12 @@
+CHIP Xor {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Not(in=a, out=notA); // Not A
+    Not(in=b, out=notB); // Not B
+
+    And(a=a, b=notB, out=andAnotB); // A*(not B)
+    And(a=notA, b=b, out = andBnotA); // (not A)*B
+    Or(a = andAnotB, b = andBnotA, out = out); // A*(not B) + (not A)*B
+}
